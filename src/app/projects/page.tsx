@@ -1,8 +1,26 @@
-{/* Projects Section */}
-      <section
-        id="projects"
-        className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-20 bg-black/50"
-      >
+"use client";
+
+import { useEffect, useState } from "react";
+import Navbar from "@/component/ui/navbar";
+
+export default function ProjectsPage() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <main className="flex min-h-screen flex-col items-center bg-black text-white">
+      <Navbar />
+
+      <section className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-20 bg-black/50">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-10 text-center">My Projects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -54,3 +72,6 @@
           </div>
         </div>
       </section>
+    </main>
+  );
+}

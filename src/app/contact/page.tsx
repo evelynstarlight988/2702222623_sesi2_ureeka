@@ -1,8 +1,28 @@
-{/* Contact Section */}
-      <section
-        id="contact"
-        className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-20"
-      >
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Mail, Github, Linkedin } from "lucide-react";
+import Navbar from "@/component/ui/navbar";
+
+export default function ContactPage() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <main className="flex min-h-screen flex-col items-center bg-black text-white">
+      <Navbar />
+
+      <section className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-20">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl font-bold mb-10 text-center">Get In Touch</h2>
           <div className="grid md:grid-cols-2 gap-10">
@@ -14,26 +34,26 @@
               </p>
               <div className="space-y-4">
                 <a
-                  href="mailto:hello@example.com"
+                  href="michelle.lumanto@binus.ac.id"
                   className="flex items-center gap-3 text-lg hover:text-purple-400 transition-colors"
                 >
-                  <Mail className="h-5 w-5" /> hello@example.com
+                  <Mail className="h-5 w-5" /> michelle.lumanto@binus.ac.id
                 </a>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/evelynstarlight988"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-lg hover:text-purple-400 transition-colors"
                 >
-                  <Github className="h-5 w-5" /> github.com/username
+                  <Github className="h-5 w-5" /> https://github.com/evelynstarlight988
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/michelle-angelique-lumanto-02b659292/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-lg hover:text-purple-400 transition-colors"
                 >
-                  <Linkedin className="h-5 w-5" /> linkedin.com/in/username
+                  <Linkedin className="h-5 w-5" /> https://www.linkedin.com/in/michelle-angelique-lumanto-02b659292/
                 </a>
               </div>
             </div>
@@ -78,3 +98,15 @@
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="w-full py-8 bg-black text-center">
+        <div className="container mx-auto px-4">
+          <p className="text-gray-400">
+            © {new Date().getFullYear()} Portfolio. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </main>
+  );
+}
